@@ -46,6 +46,17 @@ const PokeResults = ({ searchResults, setFavPoke, favPoke, searchErr }) => {
           <h1>PokeResults</h1>
           <ContainerDiv>
             <div>Name: {searchResults?.name}</div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              Types:
+              {searchResults?.types.map((types) => {
+                return <div style={{ padding: "5px" }}>{types.type.name} </div>;
+              })}
+            </div>
             <div>PokeId: {searchResults?.id}</div>
             {searchResults?.stats?.map((stats, i) => {
               return (

@@ -23,6 +23,17 @@ const FavoriteDetails = ({ singlePoke }) => {
       <h1>PokeResults</h1>
       <ContainerDiv>
         <div style={{ fontSize: "40px" }}>Name: {singlePoke.name}</div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          Types:
+          {singlePoke.types.map((types) => {
+            return <div style={{ padding: "5px" }}>{types.type.name} </div>;
+          })}
+        </div>
         <div style={{ fontSize: "32px" }}>PokeId: {singlePoke?.id}</div>
         {singlePoke?.stats?.map((stats, i) => {
           return (
