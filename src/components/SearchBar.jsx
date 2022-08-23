@@ -6,14 +6,25 @@ const StyledSearch = styled.form`
   margin: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 10px;
   border: solid black 1px;
   /* box-shadow: 10px 10px 10px rgb(0, 0, 0, 0.4); */
   box-shadow: 10px 10px 10px #deb89b;
   width: 50vw;
+  font-size: 30px;
+  text-decoration: underline;
+  background-color: #f2f2f2;
 `;
 
-const SearchBar = ({ searchResults, setSearchResults }) => {
+const StyledInput = styled.input`
+  margin-top: 10px;
+  width: 200px;
+  height: 20px;
+  text-align: center;
+`;
+
+const SearchBar = ({ searchResults, setSearchResults, setSearchErr }) => {
   const [formData, setFormData] = useState({
     name: "",
   });
@@ -39,6 +50,11 @@ const SearchBar = ({ searchResults, setSearchResults }) => {
           setFormData({
             name: "",
           });
+          setSearchErr(false);
+        })
+        .catch((err) => {
+          setSearchResults();
+          setSearchErr(true);
         });
     } else {
       alert("Please type in a pokemons' name");
@@ -49,10 +65,11 @@ const SearchBar = ({ searchResults, setSearchResults }) => {
     <div>
       <StyledSearch onSubmit={handleSubmit}>
         <label htmlFor="name">Name of Pokemon</label>
-        <input
+        <StyledInput
           type="text"
           name="name"
           id="name"
+          placeholder={searchResults?.name}
           value={formData.name}
           onChange={handleChange}
         />
